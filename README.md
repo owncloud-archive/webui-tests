@@ -1,4 +1,4 @@
-# Web interface automated tests for ownCloud
+# WebUI automated tests for ownCloud
 
 Suite of tests and needed utilities to be runned for testing the web interface of ownCloud.
 
@@ -19,13 +19,15 @@ $ [sudo] python setup.py install
 ```
 
 
+Now we can start:
 ```
 virtualenv selenium
 source selenium/bin/activate
 pip install -r requirements.txt
 ```
 
-Create config file using config.py_sample as example and name it config.py.
+
+Create config file using **config.py_sample** as example and name it **config.py**.
 
 #Run tests
 
@@ -33,9 +35,8 @@ with virtualenv activated do python runtests.py
 
 
 
-
-
 #Authors
 
 Sergio Bertolín (@SergioBertolinSG)
+
 David Toledo (@davitol)
