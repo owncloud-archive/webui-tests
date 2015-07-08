@@ -5,7 +5,11 @@ import sys
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 from config import Config
+import time
 
 def login(driver):
     driver.get(Config['owncloud_url'])
@@ -30,6 +34,50 @@ def go_to_apps_menu(driver):
     driver.implicitly_wait(1)
     elem = driver.find_element_by_xpath("/html/body/nav/div/div/ul/li[4]/a")
     elem.click()
+    driver.implicitly_wait(1)
+
+
+
+def enable_app(driver, app_id):
+    elem = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "app-category-1"))
+    )
+    
+    elem.click()
+    driver.implicitly_wait(10)
+    app_id_xpath = ".//*[@id='" + app_id + "']/input"
+    elem = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, app_id_xpath))
+    )
+    
+    elem.click()
+    driver.implicitly_wait(10)
+    elem = driver.find_element_by_id("app-category-0")
+    elem.click()
+    driver.implicitly_wait(10)
+
+
+
+def disable_app(driver, app_id):
+    elem = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "app-category-0"))
+    )
+
+    elem.click()
+    driver.implicitly_wait(10)
+    app_id_xpath = ".//*[@id='" + app_id + "']/input"
+    elem = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, app_id_xpath))
+    )
+    
+    elem.click()
+    driver.implicitly_wait(10)
+    elem = driver.find_element_by_id("app-category-1")
+    elem.click()
+    driver.implicitly_wait(10)
+
+
+
 
 
 def is_element_present(driver, how, what):
