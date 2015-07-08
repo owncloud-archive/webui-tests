@@ -44,26 +44,8 @@ class ExternalStorage(unittest.TestCase):
                 step()
             except Exception as e:
                 self.fail("{} failed ({}: {})".format(step, type(e), e))
-
-
-
     
-    # def test_disable_external_storage(self):
-    #     driver = self.driver
-    #     utilities.login(driver)
-    #     utilities.go_to_apps_menu(driver)
-    #     utilities.disable_app(driver, 'app-files_external')
-    #     self.assertTrue(utilities.is_element_present(driver, By.ID, "app-files_external"))
-
-
-    # def test_enable_external_storage(self):
-    #     driver = self.driver
-    #     utilities.login(driver)
-    #     utilities.go_to_apps_menu(driver)       
-    #     utilities.enable_app(driver, 'app-files_external')
-    #     self.assertTrue(utilities.is_element_present(driver, By.ID, "app-files_external"))
-
-
+    
     def tearDown(self):
         self.driver.quit()
 
