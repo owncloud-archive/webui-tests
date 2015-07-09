@@ -7,6 +7,10 @@ It uses python as main language and selenium webdriver.
 We are focused on Firefox webdriver for now.
 
 
+Status:
+- Scrutinizer: [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/owncloud/webui-tests/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/owncloud/webui-tests/)
+
+
 
 #Prepare environment
 
