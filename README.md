@@ -4,6 +4,9 @@ Suite of tests and needed utilities to be runned for testing the web interface o
 
 It uses python as main language and selenium webdriver.
 
+We are focused on Firefox webdriver for now.
+
+
 
 #Prepare environment
 
