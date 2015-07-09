@@ -9,14 +9,16 @@ from selenium.webdriver.common.by import By
 sys.path.append('../')
 from config import Config
 import utilities
+import time
 
 
 class ExternalStorage(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()
+        #self.driver = webdriver.Chrome()
         #self.driver = webdriver.PhantomJS()
-
+        self.driver.set_window_size(1280, 720)
     
 
     def step1(self):
@@ -25,7 +27,7 @@ class ExternalStorage(unittest.TestCase):
         utilities.login(driver)
         utilities.go_to_apps_menu(driver)
         utilities.enable_app(driver, 'app-files_external')
-        self.assertTrue(utilities.is_element_present(driver, By.ID, "app-files_external"))
+        self.assertTrue(utilities.is_element_present_waiting(driver, By.ID, "app-files_external", 20))
 
     def step2(self):
         #DISABLE EXTERNAL STORAGE APP

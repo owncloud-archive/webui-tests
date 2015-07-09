@@ -14,8 +14,8 @@ import utilities
 class basic_tests(unittest.TestCase):
 
     def setUp(self):
-        #self.driver = webdriver.Firefox()
-        self.driver = webdriver.PhantomJS()
+        self.driver = webdriver.Firefox()
+        #self.driver = webdriver.PhantomJS()
     
     def test_login(self):
         driver = self.driver
