@@ -11,6 +11,10 @@ from config import Config
 import utilities
 import time
 
+from pages import LoginPage
+from pages import FilesPage
+from pages import AppsPage
+
 
 class ExternalStorage(unittest.TestCase):
 
@@ -20,19 +24,47 @@ class ExternalStorage(unittest.TestCase):
         #self.driver = webdriver.PhantomJS()
         self.driver.set_window_size(1280, 720)
     
-
-    def step1(self):
-        #ENABLE EXTERNAL STORAGE APP
+    '''
+    def test_logout(self):
         driver = self.driver
-        utilities.login(driver)
-        utilities.go_to_apps_menu(driver)
-        utilities.enable_app(driver, 'app-files_external')
+        login_page = LoginPage.LoginPage(driver)
+        login_page.open()
+        login_page.login()
+        files_page = FilesPage.FilesPage(driver)
+
+        files_page.logout()
+        time.sleep(3)
+        self.assertTrue(utilities.is_element_present(driver, By.NAME, "password"))
+    '''
+
+    #LOGIN
+    def step1(self):
+        driver = self.driver
+        login_page = LoginPage.LoginPage(driver)
+        login_page.open()
+        login_page.login()
+        time.sleep(2)
+
+    #Go TO APPs
+    def step2(self):
+        driver = self.driver
+        files_page = FilesPage.FilesPage(driver)
+        files_page.go_to_apps_menu()
+        time.sleep(2)
+
+
+    #ENABLE EXTERNAL STORAGE APP
+    def step3(self):
+        driver = self.driver
+        self.apps_page = AppsPage.AppsPage(driver)
+        self.apps_page.enable_app('app-files_external')
         self.assertTrue(utilities.is_element_present_waiting(driver, By.ID, "app-files_external", 20))
 
-    def step2(self):
-        #DISABLE EXTERNAL STORAGE APP
+
+    #DISABLE EXTERNAL STORAGE APP
+    def step4(self):
         driver = self.driver
-        utilities.disable_app(driver, 'app-files_external')
+        self.apps_page.disable_app('app-files_external')
         self.assertTrue(utilities.is_element_present(driver, By.ID, "app-files_external"))
 
     def steps(self):
@@ -46,6 +78,7 @@ class ExternalStorage(unittest.TestCase):
                 step()
             except Exception as e:
                 self.fail("{} failed ({}: {})".format(step, type(e), e))
+    
     
     
     def tearDown(self):
