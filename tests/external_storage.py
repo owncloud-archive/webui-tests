@@ -14,6 +14,7 @@ import time
 from pages import LoginPage
 from pages import FilesPage
 from pages import AppsPage
+from pages import AdminPage
 
 
 class ExternalStorage(unittest.TestCase):
@@ -24,18 +25,7 @@ class ExternalStorage(unittest.TestCase):
         #self.driver = webdriver.PhantomJS()
         self.driver.set_window_size(1280, 720)
     
-    '''
-    def test_logout(self):
-        driver = self.driver
-        login_page = LoginPage.LoginPage(driver)
-        login_page.open()
-        login_page.login()
-        files_page = FilesPage.FilesPage(driver)
 
-        files_page.logout()
-        time.sleep(3)
-        self.assertTrue(utilities.is_element_present(driver, By.NAME, "password"))
-    '''
 
     #LOGIN
     def step1(self):
@@ -45,11 +35,12 @@ class ExternalStorage(unittest.TestCase):
         login_page.login()
         time.sleep(2)
 
+
     #Go TO APPs
     def step2(self):
         driver = self.driver
-        files_page = FilesPage.FilesPage(driver)
-        files_page.go_to_apps_menu()
+        self.files_page = FilesPage.FilesPage(driver)
+        self.files_page.go_to_apps_menu()
         time.sleep(2)
 
 
@@ -61,11 +52,36 @@ class ExternalStorage(unittest.TestCase):
         self.assertTrue(utilities.is_element_present_waiting(driver, By.ID, "app-files_external", 20))
 
 
-    #DISABLE EXTERNAL STORAGE APP
+    #Go BACK TO FILES VIEW
     def step4(self):
+        self.apps_page.go_to_files_page()
+        time.sleep(2)
+    
+
+
+    #Go TO ADMIN PAGE
+    def step5(self):
         driver = self.driver
+        self.files_page = FilesPage.FilesPage(driver)
+        self.files_page.go_to_admin_page()
+        time.sleep(2)
+
+    #SET UP SFTP
+    def step6(self):
+        driver = self.driver
+        self.admin_page = AdminPage.AdminPage(driver)
+        self.admin_page.set_up_sftp()
+        
+
+    
+    #DISABLE EXTERNAL STORAGE APP
+    def step7(self):
+        driver = self.driver
+        self.admin_page = AdminPage.AdminPage(driver)
+        self.admin_page.go_to_apps_menu()
         self.apps_page.disable_app('app-files_external')
         self.assertTrue(utilities.is_element_present(driver, By.ID, "app-files_external"))
+    
 
     def steps(self):
         for name in sorted(dir(self)):

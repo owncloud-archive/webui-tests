@@ -51,3 +51,11 @@ class AppsPage(object):
         self.apps_menu_not_enabled = ut.return_element_id(self.driver, "app-category-1", 10)
         self.apps_menu_not_enabled.click()
         time.sleep(5)
+
+
+    def go_to_files_page(self):
+        self.left_menu_open = ut.return_element_xpath(self.driver, ".//*[@id='header']/a[2]", 200)    
+        self.left_menu_open.click()
+        time.sleep(5)
+        self.left_files_page = ut.return_element_xpath(self.driver, ".//*[@id='apps']/ul/li[1]/a", 200)        
+        self.left_files_page.click()
