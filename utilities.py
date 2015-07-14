@@ -25,6 +25,13 @@ def return_element_id(driver, id, waiting=10):
     )
     return element
 
+def return_element_css(driver, css_selector, waiting=10):
+    element = WebDriverWait(driver, waiting).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, css_selector))
+    )
+    return element
+
+
 def is_element_present_waiting(driver, how, what, waiting=10):
     try:
         element = WebDriverWait(driver, waiting).until(

@@ -35,7 +35,7 @@ class ExternalStorage(unittest.TestCase):
         login_page.login()
         time.sleep(2)
 
-
+    
     #Go TO APPs
     def step2(self):
         driver = self.driver
@@ -72,10 +72,19 @@ class ExternalStorage(unittest.TestCase):
         self.admin_page = AdminPage.AdminPage(driver)
         self.admin_page.set_up_sftp()
         
-
-    
-    #DISABLE EXTERNAL STORAGE APP
+    #CHECK OUT
     def step7(self):
+        driver = self.driver
+        self.admin_page.go_to_files_page()
+        time.sleep(2)
+        self.files_page = FilesPage.FilesPage(driver)
+        time.sleep(3)
+        self.assertTrue(self.files_page.look_for_element_in_visible_files_list('SFTP'))
+
+
+
+    #DISABLE EXTERNAL STORAGE APP
+    def step8(self):
         driver = self.driver
         self.admin_page = AdminPage.AdminPage(driver)
         self.admin_page.go_to_apps_menu()

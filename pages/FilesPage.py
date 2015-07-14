@@ -46,4 +46,12 @@ class FilesPage(object):
         time.sleep(1)
         self.right_admin_page.click()
 
+    def look_for_element_in_visible_files_list(self, name):
+        list_elements = self.driver.find_elements(By.CSS_SELECTOR, 'td.filename .innernametext')
+        visible_filenames = [ elem.text for elem in list_elements ]
+        if name in visible_filenames:
+            return True
+        else:
+            return False
+
 
