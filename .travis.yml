@@ -6,10 +6,9 @@ python:
 branches:
   only:
     - master
-    - /^stable\d+(\.\d+)?$/
 
 matrix:
   fast_finish: true
 
 script:
-    - ./travis/check-syntax.sh
+    - ./travis-build/check-syntax.sh
