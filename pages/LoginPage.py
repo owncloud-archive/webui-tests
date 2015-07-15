@@ -22,23 +22,13 @@ class LoginPage(object):
         self.user_textbox = self.driver.find_element_by_name("user")
         self.password_textbox = self.driver.find_element_by_name("password")
 
-    def login(self):
-        self.user_textbox.send_keys(Config['owncloud_login'])
-        self.password_textbox.send_keys(Config['owncloud_password'])
+    def login(self,user=None,pwd=None):
+        if user == None :
+            self.user_textbox.send_keys(Config["owncloud_login"])
+        else :
+            self.user_textbox.send_keys(user)
+	if pwd == None :
+            self.password_textbox.send_keys(Config["owncloud_password"])
+        else :
+            self.password_textbox.send_keys(pwd)
         self.password_textbox.send_keys(Keys.RETURN)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
