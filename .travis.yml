@@ -1,0 +1,17 @@
+nguage: python
+
+python:
+  - "2.7"
+
+branches:
+  only:
+    - master
+
+matrix:
+  fast_finish: true
+
+install:
+    - chmod +x travis-build/check-syntax.sh
+
+script:
+    - ./travis-build/check-syntax.sh
