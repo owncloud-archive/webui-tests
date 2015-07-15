@@ -10,6 +10,7 @@ We are focused on Firefox webdriver for now.
 Status:
 - Scrutinizer: [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/owncloud/webui-tests/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/owncloud/webui-tests/)
 
+- Travis: [![Scrutinizer Code Quality](https://travis-ci.org/owncloud/webui-tests.svg?branch=master)](https://travis-ci.org/owncloud/webui-tests)
 
 
 #Prepare environment
