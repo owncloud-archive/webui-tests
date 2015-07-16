@@ -1,17 +1,30 @@
-nguage: python
-
+language: php
 python:
-  - "2.7"
+    - "5.4"
 
-branches:
-  only:
-    - master
+env:
+    - CORE_BRANCH=stable8
 
-matrix:
-  fast_finish: true
 
-install:
-    - chmod +x travis-build/check-syntax.sh
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install apache2 libapache2-mod-fastcgi
+    - bash travis-build/install_oc.sh $CORE_BRANCH
+    # enable php-fpm
+    - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
+    - sudo a2enmod rewrite actions fastcgi alias
+    - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
+    # configure apache virtual hosts
+    - sudo cp -f travis-build/travis-ci-apache /etc/apache2/sites-available/default
+    - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
+    - sudo service apache2 restart
+    - sleep 3
+    - chmod +x occ
+    - ./occ app:disable firstrunwizard
+install: 
+    - mv travis-build/config.py.travis config.py
+    - cd sauce
+    - sudo pip install -r sauce_requirements.txt
 
-script:
-    - ./travis-build/check-syntax.sh
+script: ./run_sauce_tests.sh

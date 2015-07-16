@@ -76,20 +76,20 @@ class ExternalStorage(SU.SauceTestCase):
         self.assertTrue(self.files_page.look_for_element_in_visible_files_list('SFTP'))
         time.sleep(2)
 
-    #Go BACK TO APPS PAGE
+        #Go BACK TO APPS PAGE
     def step8(self):
         driver = self.driver
         self.files_page = FilesPage.FilesPage(driver)
         self.admin_page.go_to_apps_menu()
         time.sleep(2)
 
-
     #DISABLE EXTERNAL STORAGE APP
-    def step8(self):
+    def step9(self):
         driver = self.driver
         self.apps_page = AppsPage.AppsPage(driver)
         self.apps_page.disable_app('app-files_external')
         self.apps_page.go_to_disabled_apps()
+        time.sleep(2)
         self.assertTrue(utilities.is_element_present(driver, By.ID, "app-files_external"))
     
 
