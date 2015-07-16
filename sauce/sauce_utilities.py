@@ -36,8 +36,8 @@ class SauceTestCase(unittest.TestCase):
         hub_url = "%s:%s@localhost:4445" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
         self.driver = webdriver.Remote(
             desired_capabilities=self.desired_capabilities,
-            command_executor="http://%s/wd/hub" % hub_url)
-        }
+            command_executor="http://%s/wd/hub" % hub_url
+        )
 
         '''sauce_url = "http://%s:%s@ondemand.saucelabs.com:80/wd/hub"
         self.driver = webdriver.Remote(
