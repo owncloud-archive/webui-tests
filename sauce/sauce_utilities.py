@@ -42,13 +42,6 @@ class SauceTestCase(unittest.TestCase):
             desired_capabilities=self.desired_capabilities,
             command_executor="http://%s/wd/hub" % hub_url
         )
-
-        '''sauce_url = "http://%s:%s@ondemand.saucelabs.com:80/wd/hub"
-        self.driver = webdriver.Remote(
-            desired_capabilities=self.desired_capabilities,
-            command_executor=sauce_url % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
-        )
-        '''
         
         self.driver.set_window_size(1280, 720)
         self.driver.implicitly_wait(30)
