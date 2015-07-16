@@ -20,7 +20,7 @@ before_install:
     - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
     - sudo service apache2 restart
     - sleep 3
-    - chmod +x occ
+    - chmod +x core/occ
     - ./core/occ app:disable firstrunwizard
 install: 
     - mv travis-build/config.py.travis config.py
