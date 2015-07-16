@@ -32,11 +32,20 @@ def on_platforms(platforms):
 class SauceTestCase(unittest.TestCase):
     def setUp(self):
         self.desired_capabilities['name'] = self.id()
-        sauce_url = "http://%s:%s@ondemand.saucelabs.com:80/wd/hub"
+
+        hub_url = "%s:%s@localhost:4445" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
+        self.driver = webdriver.Remote(
+            desired_capabilities=self.desired_capabilities,
+            command_executor="http://%s/wd/hub" % hub_url)
+        }
+
+        '''sauce_url = "http://%s:%s@ondemand.saucelabs.com:80/wd/hub"
         self.driver = webdriver.Remote(
             desired_capabilities=self.desired_capabilities,
             command_executor=sauce_url % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
         )
+        '''
+        self.desired_capabilities['tunnel-identifier'] = os.environ['TRAVIS_JOB_NUMBER']
         self.driver.set_window_size(1280, 720)
         self.driver.implicitly_wait(30)
     
