@@ -36,7 +36,6 @@ class SauceTestCase(unittest.TestCase):
         if os.environ.get('TRAVIS'):
             self.desired_capabilities['tunnel-identifier'] = os.environ['TRAVIS_JOB_NUMBER']
             self.desired_capabilities['build'] = os.environ['TRAVIS_BUILD_NUMBER']
-            self.desired_capabilities['tags'] = [os.environ['TRAVIS_PYTHON_VERSION'], 'CI']
 
         hub_url = "%s:%s@localhost:4445" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
         self.driver = webdriver.Remote(
