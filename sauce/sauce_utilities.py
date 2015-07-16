@@ -9,8 +9,8 @@ from selenium import webdriver
 from sauceclient import SauceClient
 
 
-SAUCE_USERNAME = os.environ.get('SAUCE_USERNAME', "SergioBertolinSG")
-SAUCE_ACCESS_KEY = os.environ.get('SAUCE_ACCESS_KEY', "bce4d868-3ba3-45a0-8c68-0b290fd59d4f")
+SAUCE_USERNAME = os.environ.get('SAUCE_USERNAME')
+SAUCE_ACCESS_KEY = os.environ.get('SAUCE_ACCESS_KEY')
 sauce = SauceClient(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
 
 browsers = [{"platform": "Mac OS X 10.9",                                      
