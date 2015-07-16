@@ -33,6 +33,11 @@ class SauceTestCase(unittest.TestCase):
     def setUp(self):
         self.desired_capabilities['name'] = self.id()
 
+        if os.environ.get('TRAVIS'):
+            self.desired_capabilities['tunnel-identifier'] = os.environ['TRAVIS_JOB_NUMBER']
+            self.desired_capabilities['build'] = os.environ['TRAVIS_BUILD_NUMBER']
+            self.desired_capabilities['tags'] = [os.environ['TRAVIS_PYTHON_VERSION'], 'CI']
+
         hub_url = "%s:%s@localhost:4445" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
         self.driver = webdriver.Remote(
             desired_capabilities=self.desired_capabilities,
@@ -45,7 +50,7 @@ class SauceTestCase(unittest.TestCase):
             command_executor=sauce_url % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
         )
         '''
-        self.desired_capabilities['tunnel-identifier'] = os.environ['TRAVIS_JOB_NUMBER']
+        
         self.driver.set_window_size(1280, 720)
         self.driver.implicitly_wait(30)
     
