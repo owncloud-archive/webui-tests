@@ -21,7 +21,7 @@ before_install:
     - sudo service apache2 restart
     - sleep 3
     - chmod +x occ
-    - ./occ app:disable firstrunwizard
+    - ./core/occ app:disable firstrunwizard
 install: 
     - mv travis-build/config.py.travis config.py
     - cd sauce
