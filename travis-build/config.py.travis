@@ -1,3 +1,11 @@
+import os
+
+SFTP_HOST = os.environ.get('SFTP_HOST')
+SFTP_USERNAME = os.environ.get('SFTP_USERNAME')
+SFTP_PASSWORD = os.environ.get('SFTP_PASSWORD')
+SFTP_REMOTE_SUBFOLDER = os.environ.get('SFTP_REMOTE_SUBFOLDER')
+
+
 Config = {
     # Change this to your ownCloud's URL
     'owncloud_url' : 'http://127.0.0.1/',
@@ -7,4 +15,10 @@ Config = {
     'owncloud_password': 'admin',
     # test user whom we want to share a file
     'owncloud_share2user': 'share',
+
+    #SFTP data
+    'SFTP_Host': SFTP_HOST,
+    'SFTP_Username': SFTP_USERNAME,
+    'SFTP_Password': SFTP_PASSWORD,
+    'SFTP_remote_subfolder': SFTP_REMOTE_SUBFOLDER,
 }
