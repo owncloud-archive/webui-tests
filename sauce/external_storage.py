@@ -89,7 +89,7 @@ class ExternalStorage(SU.SauceTestCase):
         self.apps_page = AppsPage.AppsPage(driver)
         self.apps_page.disable_app('app-files_external')
         self.apps_page.go_to_disabled_apps()
-        time.sleep(2)
+        time.sleep(5)
         self.assertTrue(utilities.is_element_present(driver, By.ID, "app-files_external"))
     
 
