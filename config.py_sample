@@ -12,4 +12,7 @@ Config = {
     'SFTP_Username': 'sftpuser',
     'SFTP_Password': 'sftppassword',
     'SFTP_remote_subfolder': '/home/sftpuser',
+    #relogin data
+    'new_admin_password': 'password2',
+    'new_admin_name' : 'administrador',
 }

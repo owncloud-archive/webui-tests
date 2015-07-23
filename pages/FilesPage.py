@@ -40,6 +40,13 @@ class FilesPage(object):
         self.left_menu_apps = ut.return_element_xpath(self.driver, ".//*[@id='apps-management']/a", 200)        
         self.left_menu_apps.click()
 
+    def go_to_personal_page(self):
+       self.driver.find_element_by_id('expand').click()
+       #Wait to show the menu
+       time.sleep(1)
+       #Click in users menu
+       self.driver.find_element_by_xpath(".//*[@id='expanddiv']/ul/li[1]/a").click()
+
     def go_to_admin_page(self):
         self.right_menu_open.click()
         self.right_admin_page = ut.return_element_xpath(self.driver, ".//*[@id='expanddiv']/ul/li[3]/a", 200)
